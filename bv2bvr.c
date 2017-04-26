@@ -36,7 +36,7 @@
 #define is_quote_type(x) (x==MDB_TEXT || x==MDB_OLE || x==MDB_MEMO || x==MDB_DATETIME || x==MDB_BINARY || x==MDB_REPID)
 #define is_binary_type(x) (x==MDB_OLE || x==MDB_BINARY || x==MDB_REPID)
 
-static char *escapes(char *s);
+//static char *escapes(char *s);
 
 //#define DONT_ESCAPE_ESCAPE
 	static void
@@ -83,6 +83,15 @@ print_col(FILE *outfile, gchar *col_val, int quote_text, int col_type, int bin_l
 }
 
 
+int parse_parameters( int argc, char **argv ) {
+
+	// to be determined, should we have -h / -i, or just let it be raw
+	
+	if (argc != 2) {
+		fprintf(stderr,"Usage: bv2bvr <input file> > outputfile.bvr\n");
+	}
+	return 0;
+}
 
 int main(int argc, char **argv) {
 	unsigned int i;
@@ -107,6 +116,10 @@ int main(int argc, char **argv) {
 	size_t length;
 	int this_table;
 	char *tables[] = { "Layout", "Pin", "Nail" };
+
+	parse_parameters(argc, argv);
+	if (argc != 2) exit(1);
+
 
 	/* Process options */
 	quote_char = g_strdup("");
@@ -203,6 +216,7 @@ int main(int argc, char **argv) {
 	return 0;
 }
 
+/*
 static char *escapes(char *s)
 {
 	char *d = (char *) g_strdup(s);
@@ -229,3 +243,4 @@ static char *escapes(char *s)
 	g_free(orig);
 	return d;
 }
+*/
