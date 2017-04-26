@@ -26,6 +26,8 @@
 
 #include <mdbtools.h>
 
+#define VERSION 0.1
+
 #ifdef DMALLOC
 #include "dmalloc.h"
 #endif
